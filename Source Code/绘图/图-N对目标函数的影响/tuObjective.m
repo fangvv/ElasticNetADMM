@@ -1,0 +1,56 @@
+% arrayResult = dlmread('hztxtResult.txt',',');
+
+%绘制目标函数图像
+h2 = figure;
+%dirName = '目标函数文件';
+arrayResult = tu( '10.txt');
+[iter, col] = size(arrayResult);
+Markersize = 10;
+lineWidth = 1;
+xAris = 1:5:200;
+plot(xAris, arrayResult(xAris,2),'s--','LineWidth',1.5);
+hold on;
+arrayResult = tu('15.txt');
+[iter, col] = size(arrayResult);
+plot(xAris, arrayResult(xAris,2),'x-','LineWidth',1.5);
+hold on;
+arrayResult = tu( '20.txt');
+[iter, col] = size(arrayResult);
+plot(xAris, arrayResult(xAris,2),'o--','LineWidth',1.5);
+hold on;
+arrayResult = tu('25.txt');
+[iter, col] = size(arrayResult);
+plot(xAris, arrayResult(xAris,2),'>:','LineWidth',1.5);
+hold on;
+arrayResult = tu('30.txt');
+[iter, col] = size(arrayResult);
+plot(xAris, arrayResult(xAris,2),'+:','LineWidth',1.5);
+set(gcf,'Units','centimeters','Position',[6 6 14.5 12]);
+set(gca,'Position',[.15 .15 .8 .75]);
+set(get(gca,'XLabel'),'FontSize',16);
+xlabel('迭代次数');
+ylabel('目标函数值');
+legend( '{\it{N = 10}}','{\it{N = 15}}', '{\it{N = 20}}','{\it{N = 25}}','{\it{N = 30}}','FontName','Euclid','FontSize',7,'LineWidth',4);
+%legend('FontName','Euclid','FontSize',7,'LineWidth',4);
+grid on;set(gca,'GridLineStyle',':','GridColor','k','GridAlpha',1);
+set(gca,'FontSize',16);
+%%找到当前路径
+p = mfilename('fullpath');
+i = findstr(p,'\');
+saveFile = p(1:i(end));
+
+%%保存图像文件
+saveObjImg = [saveFile,'\UEObjective1.pdf'];
+saveas(gca,saveObjImg);
+saveObjImg = [saveFile,'\UEObjective1.jpg'];
+saveas(gca,saveObjImg);
+saveObjImg1 = [saveFile,'\UEObjective1.eps'];
+saveas(gca,saveObjImg1);
+saveObjImg1 = [saveFile,'\UEObjective1.tiff'];
+saveas(gca,saveObjImg1);
+saveObjImg1 = [saveFile,'\UEObjective1.fig'];
+saveas(gca,saveObjImg1);
+saveObjImg1 = [saveFile,'\UEObjective1.svg'];
+saveas(gca,saveObjImg1);
+
+
